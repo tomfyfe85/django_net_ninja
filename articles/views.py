@@ -8,4 +8,4 @@ def article_list(request):
     return render(request, "articles/article_list.html", {"articles": articles})
 
 def article_detail(request, slug):
-    return HttpResponse()
+    return HttpResponse(slug)

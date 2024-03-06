@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="{% static 'styles.css'%}"
   </head>
   <body>
-
     <div class="wrapper">
-      {% block content %}
-      {% endblock%}
+      <h1><a href="{% url 'list' %}"><img src="{% static 'logo.png'%}"/a></h1>
+      {% block content %} {% endblock%}
     </div>
   </body>
 </html>

@@ -19,19 +19,38 @@ def signup_view(request):
 
 
 def login_view(request):
+    print("login")
+    print(request.method)
     if request.method == "POST":
+        print("if request.method")
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
+            print("form.is_valid")
             user = form.get_user()
             login(request, user)
+            if "next" in request.POST:
+                print("if login view")
+                return redirect(request.POST.get("next"))
+            else:
+                print("else login view")
             return redirect("articles:list")
 
     else:
+        print("else request.method")
+
         form = AuthenticationForm()
 
-    return render(request, "accounts/login.html", {"form": form})
+    return render(
+        request,
+        "accounts/login.html",
+        {
+            "form": form,
+        },
+    )
+
 
 def logout_view(request):
     if request.method == "POST":
         logout(request)
+        print('log out view')
         return redirect("articles:list")
